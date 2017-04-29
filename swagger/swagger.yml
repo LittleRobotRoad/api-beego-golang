@@ -1,0 +1,316 @@
+swagger: "2.0"
+info:
+  title: mobile API
+  description: mobile has every tool to get any job done, so codename for the new
+    mobile APIs.
+  version: 1.0.2
+  termsOfService: http://niconico.lol/
+  contact:
+    email: daisukeayanami@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v2
+paths:
+  /object/:
+    get:
+      tags:
+      - object
+      description: get all objects
+      operationId: ObjectController.GetAll
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Object'
+        "403":
+          description: :objectId is empty
+    post:
+      tags:
+      - object
+      description: create object
+      operationId: ObjectController.Create
+      parameters:
+      - in: body
+        name: body
+        description: The object content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Object'
+      responses:
+        "200":
+          description: '{string} models.Object.Id'
+        "403":
+          description: body is empty
+  /object/{objectId}:
+    get:
+      tags:
+      - object
+      description: find object by objectid
+      operationId: ObjectController.Get
+      parameters:
+      - in: path
+        name: objectId
+        description: the objectid you want to get
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Object'
+        "403":
+          description: :objectId is empty
+    put:
+      tags:
+      - object
+      description: update the object
+      operationId: ObjectController.Update
+      parameters:
+      - in: path
+        name: objectId
+        description: The objectid you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: The body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Object'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Object'
+        "403":
+          description: :objectId is empty
+    delete:
+      tags:
+      - object
+      description: delete the object
+      operationId: ObjectController.Delete
+      parameters:
+      - in: path
+        name: objectId
+        description: The objectId you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: objectId is empty
+  /user/{uid}:
+    delete:
+      tags:
+      - user
+      description: delete the user
+      operationId: UserController.Delete
+      parameters:
+      - in: path
+        name: uid
+        description: The uid you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: uid is empty
+  /user/add:
+    post:
+      tags:
+      - user
+      description: CreatedTime不用输入，系统自动生成
+      operationId: UserController.CreateUser
+      parameters:
+      - in: body
+        name: body
+        description: body for user content
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwaggerRegisterUser'
+      responses:
+        "200":
+          description: '{int} models.User.Uid'
+        "403":
+          description: body is empty
+  /user/driverstatus:
+    post:
+      tags:
+      - user
+      description: 设置司机状态
+      operationId: UserController.setDriverStatus
+      parameters:
+      - in: body
+        name: body
+        description: body for user content
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwaggerDriverStatus'
+      responses:
+        "200":
+          description: '{string} logout success'
+  /user/getalldriver/{pageNo}/{pageSize}:
+    get:
+      tags:
+      - user
+      description: 获取所有司机的信息
+      operationId: UserController.GetAllDriver
+      parameters:
+      - in: path
+        name: pageSize
+        description: pageSize default 10
+        required: true
+        type: string
+      - in: path
+        name: pageNo
+        description: pageNo default 1
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} logout success'
+  /user/getidledriver/{pageNo}/{pageSize}:
+    get:
+      tags:
+      - user
+      description: 获取所有空闲司机的信息
+      operationId: UserController.GetIdleDriver
+      parameters:
+      - in: path
+        name: pageSize
+        description: pageSize default 10
+        required: true
+        type: string
+      - in: path
+        name: pageNo
+        description: pageNo default 1
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} logout success'
+  /user/login:
+    post:
+      tags:
+      - user
+      description: Logs user into the system
+      operationId: UserController.Login
+      parameters:
+      - in: body
+        name: body
+        description: body for user content
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwaggerLoginUser'
+      responses:
+        "200":
+          description: '{string} login success'
+        "403":
+          description: user not exist
+  /user/logout:
+    get:
+      tags:
+      - user
+      description: Logs out current logged in user session
+      operationId: UserController.logout
+      responses:
+        "200":
+          description: '{string} logout success'
+  /user/wechatlogin/{code}:
+    get:
+      tags:
+      - user
+      description: CreatedTime不用输入，系统自动生成
+      operationId: UserController.CreateUser
+      parameters:
+      - in: body
+        name: body
+        description: body for user content
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwaggerRegisterUser'
+      responses:
+        "200":
+          description: '{int} models.User.Uid'
+        "403":
+          description: body is empty
+  /wechat/getOpenId/{loginCode}:
+    get:
+      tags:
+      - wechat
+      description: delete the user
+      operationId: WeChatController.微信获取OpenId的接口
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: uid is empty
+definitions:
+  models.Object:
+    title: Object
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int64
+      ObjectId:
+        type: string
+      PlayerName:
+        type: string
+      Score:
+        type: integer
+        format: int64
+  models.SwaggerDriverStatus:
+    title: SwaggerDriverStatus
+    type: object
+    properties:
+      DriverId:
+        type: integer
+        format: int64
+      DriverStatus:
+        type: integer
+        format: int64
+  models.SwaggerLoginUser:
+    title: SwaggerLoginUser
+    type: object
+    properties:
+      Password:
+        type: string
+      Phone:
+        type: string
+  models.SwaggerRegisterUser:
+    title: SwaggerRegisterUser
+    type: object
+    properties:
+      Age:
+        type: integer
+        format: int64
+      Email:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      NickName:
+        type: string
+      Password:
+        type: string
+      Phone:
+        type: string
+      UserStatus:
+        type: integer
+        format: int64
+      UserType:
+        type: integer
+        format: int64
+      WechatId:
+        type: string
+tags:
+- name: object
+  description: |
+    Operations about object
+- name: user
+  description: |
+    Operations about Users
+- name: wechat
+  description: |
+    Operations about WeChat
