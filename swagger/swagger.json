@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "mobile API",
-        "description": "mobile has every tool to get any job done, so codename for the new mobile APIs.",
+        "title": "司机预约 API",
+        "description": "主要是司机用户和老板用户注册查询等接口的示例",
         "version": "1.0.2",
         "termsOfService": "http://niconico.lol/",
         "contact": {
@@ -161,7 +161,7 @@
                         "description": "body for user content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.SwaggerRegisterUser"
+                            "$ref": "#/definitions/models.ReqRegisterUser"
                         }
                     }
                 ],
@@ -171,6 +171,56 @@
                     },
                     "403": {
                         "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/user/addfriends": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "承运商添加司机好友",
+                "operationId": "UserController.AddFriends",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for user content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ReqAddFriends"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} logout success"
+                    }
+                }
+            }
+        },
+        "/user/deletefriend": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "设置司机状态",
+                "operationId": "UserController.setDriverStatus",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for user content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ReqAddFriends"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} logout success"
                     }
                 }
             }
@@ -189,7 +239,7 @@
                         "description": "body for user content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.SwaggerDriverStatus"
+                            "$ref": "#/definitions/models.ReqDriverStatus"
                         }
                     }
                 ],
@@ -218,6 +268,80 @@
                     {
                         "in": "path",
                         "name": "pageNo",
+                        "description": "pageNo default 1",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} logout success"
+                    }
+                }
+            }
+        },
+        "/user/getbossalldriver/{bossId}/{pageNo}/{pageSize}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "获取所有空闲司机的信息",
+                "operationId": "UserController.GetIdleDriver",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "pageSize",
+                        "description": "pageSize default 10",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "pageNo",
+                        "description": "pageNo default 1",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "bossId",
+                        "description": "pageNo default 1",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} logout success"
+                    }
+                }
+            }
+        },
+        "/user/getbossidledriver/{bossId}/{pageNo}/{pageSize}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "获取所有空闲司机的信息",
+                "operationId": "UserController.GetIdleDriver",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "pageSize",
+                        "description": "pageSize default 10",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "pageNo",
+                        "description": "pageNo default 1",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "bossId",
                         "description": "pageNo default 1",
                         "required": true,
                         "type": "string"
@@ -274,7 +398,7 @@
                         "description": "body for user content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.SwaggerLoginUser"
+                            "$ref": "#/definitions/models.ReqLoginUser"
                         }
                     }
                 ],
@@ -298,34 +422,6 @@
                 "responses": {
                     "200": {
                         "description": "{string} logout success"
-                    }
-                }
-            }
-        },
-        "/user/wechatlogin/{code}": {
-            "get": {
-                "tags": [
-                    "user"
-                ],
-                "description": "CreatedTime不用输入，系统自动生成",
-                "operationId": "UserController.CreateUser",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for user content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.SwaggerRegisterUser"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{int} models.User.Uid"
-                    },
-                    "403": {
-                        "description": "body is empty"
                     }
                 }
             }
@@ -362,13 +458,50 @@
                     "wechat"
                 ],
                 "description": "delete the user",
-                "operationId": "WeChatController.微信获取OpenId的接口",
+                "operationId": "WeChatController.微信获取唯一识别id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "loginCode",
+                        "description": "loginCode WeChat",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "uid is empty"
+                    }
+                }
+            }
+        },
+        "/wechat/wechatlogin/{code}": {
+            "get": {
+                "tags": [
+                    "wechat"
+                ],
+                "description": "CreatedTime不用输入，系统自动生成",
+                "operationId": "WeChatController.CreateUser",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for user content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ReqRegisterUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{int} models.User.Uid"
+                    },
+                    "403": {
+                        "description": "body is empty"
                     }
                 }
             }
@@ -395,10 +528,26 @@
                 }
             }
         },
-        "models.SwaggerDriverStatus": {
-            "title": "SwaggerDriverStatus",
+        "models.ReqAddFriends": {
+            "title": "ReqAddFriends",
             "type": "object",
             "properties": {
+                "BossId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ReqDriverStatus": {
+            "title": "ReqDriverStatus",
+            "type": "object",
+            "properties": {
+                "Address": {
+                    "type": "string"
+                },
                 "DriverId": {
                     "type": "integer",
                     "format": "int64"
@@ -406,35 +555,66 @@
                 "DriverStatus": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "Latitude": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Longitude": {
+                    "type": "number",
+                    "format": "double"
                 }
             }
         },
-        "models.SwaggerLoginUser": {
-            "title": "SwaggerLoginUser",
+        "models.ReqLoginUser": {
+            "title": "ReqLoginUser",
             "type": "object",
             "properties": {
+                "Address": {
+                    "type": "string"
+                },
+                "Latitude": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Longitude": {
+                    "type": "number",
+                    "format": "double"
+                },
                 "Password": {
                     "type": "string"
                 },
                 "Phone": {
                     "type": "string"
+                },
+                "UserType": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         },
-        "models.SwaggerRegisterUser": {
-            "title": "SwaggerRegisterUser",
+        "models.ReqRegisterUser": {
+            "title": "ReqRegisterUser",
             "type": "object",
             "properties": {
+                "Address": {
+                    "type": "string"
+                },
                 "Age": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "Email": {
-                    "type": "string"
-                },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "Latitude": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Longitude": {
+                    "type": "number",
+                    "format": "double"
                 },
                 "NickName": {
                     "type": "string"
@@ -466,7 +646,7 @@
         },
         {
             "name": "user",
-            "description": "Operations about Users\n"
+            "description": "关于司机用户和承运商用户的注册以及状态查询\n"
         },
         {
             "name": "wechat",

@@ -1,6 +1,5 @@
 package models
 
-
 type Result struct {
 	Code   int
 	Object interface{}
@@ -15,24 +14,46 @@ type Page struct {
 	List       interface{}
 }
 
-type SwaggerRegisterUser struct {
+type ReqRegisterUser struct {
 	Id         int
-	Phone   string
+	Phone      string
 	WechatId   string
 	NickName   string
 	Password   string
 	UserType   int //0代表司机  1代表老板
 	UserStatus int //0代表空闲  1代表忙碌
-	Email      string
-	Age        int
+	Address    string
+	//经度
+	Latitude float64
+	//纬度
+	Longitude float64
+	Age       int
 }
 
-type SwaggerLoginUser struct {
-	Phone string
+type ReqLoginUser struct {
+	Phone    string
 	Password string
+	UserType int
+
+	Address string
+	//经度
+	Latitude float64
+	//纬度
+	Longitude float64
 }
 
-type SwaggerDriverStatus struct {
-	DriverId int
+type ReqDriverStatus struct {
+	DriverId     int
 	DriverStatus int
+
+	Address string
+	//经度
+	Latitude float64
+	//纬度
+	Longitude float64
+}
+
+type ReqAddFriends struct {
+	Phone  string
+	BossId int
 }

@@ -19,7 +19,7 @@ func initDB() {
 	// set default database
 	orm.RegisterDataBase("default", "mysql", "root:root@/goweb?charset=utf8")
 	// register model
-	orm.RegisterModel(new(models.Object), new(models.User))
+	orm.RegisterModel(new(models.Object), new(models.DriverUser), new(models.BossUser),new(models.BossToDriver))
 
 	// create table
 	orm.RunSyncdb("default", false, true)
@@ -28,12 +28,13 @@ func initDB() {
 func main() {
 	// 开启 ORM 调试模式
 	orm.Debug = true
-
+	//开启自动化文档
 	beego.BConfig.WebConfig.DirectoryIndex = true
 	beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
-
+	//加入中间件拦截
 	beego.InsertFilter("/v2/*", beego.BeforeExec, FilterBefore, false)
 	beego.InsertFilter("/v2/*", beego.AfterExec, FilterAfter, false)
+
 	beego.Run()
 
 }
