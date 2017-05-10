@@ -34,7 +34,7 @@ type BossUser struct {
 	Latitude float64  `orm:"digits(9);decimals(6)"`
 	//纬度
 	Longitude  float64  `orm:"digits(9);decimals(6)"`
-	DriverUser []*DriverUser  `orm:"rel(m2m);rel_through(niconico.lol/driver/models.BossToDriver)"`
+	DriverUser []*DriverUser  `orm:"rel(m2m);rel_through(github.com/api-beego-golang/models.BossToDriver)"`
 	Created    time.Time      `orm:"index"`
 }
 

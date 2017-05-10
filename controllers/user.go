@@ -3,10 +3,10 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/astaxie/beego"
-	"niconico.lol/driver/models"
+	"github.com/api-beego-golang/models"
 	"errors"
 	"strconv"
-	"niconico.lol/driver/utils"
+	"github.com/api-beego-golang/utils"
 )
 
 var (

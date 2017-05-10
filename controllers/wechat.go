@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"errors"
 	"strconv"
-	"niconico.lol/driver/models"
+	"github.com/api-beego-golang/models"
 )
 
 // Operations about WeChat

@@ -9,7 +9,7 @@
 package routers
 
 import (
-	"niconico.lol/driver/controllers"
+	"github.com/api-beego-golang/controllers"
 	"github.com/astaxie/beego"
 )
 

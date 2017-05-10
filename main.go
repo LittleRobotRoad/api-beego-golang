@@ -1,11 +1,11 @@
 package main
 
 import (
-	_ "niconico.lol/driver/routers"
+	_ "github.com/api-beego-golang/routers"
 	"github.com/astaxie/beego"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/astaxie/beego/orm"
-	"niconico.lol/driver/models"
+	"github.com/api-beego-golang/models"
 	"github.com/astaxie/beego/context"
 )
 
@@ -19,7 +19,7 @@ func initDB() {
 	// set default database
 	orm.RegisterDataBase("default", "mysql", "root:root@/goweb?charset=utf8")
 	// register model
-	orm.RegisterModel(new(models.Object), new(models.DriverUser), new(models.BossUser),new(models.BossToDriver))
+	orm.RegisterModel(new(models.Object), new(models.DriverUser), new(models.BossUser), new(models.BossToDriver))
 
 	// create table
 	orm.RunSyncdb("default", false, true)

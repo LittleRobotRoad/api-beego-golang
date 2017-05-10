@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"niconico.lol/driver/models"
+	"github.com/api-beego-golang/models"
 	"encoding/json"
 	"github.com/astaxie/beego"
 )
