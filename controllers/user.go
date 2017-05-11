@@ -3,10 +3,10 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/astaxie/beego"
-	"github.com/api-beego-golang/models"
+	"github.com/LittleRobotRoad/api-beego-golang/models"
 	"errors"
 	"strconv"
-	"github.com/api-beego-golang/utils"
+	"github.com/LittleRobotRoad/api-beego-golang/utils"
 )
 
 var (

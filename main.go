@@ -1,11 +1,11 @@
 package main
 
 import (
-	_ "github.com/api-beego-golang/routers"
+	_ "github.com/LittleRobotRoad/api-beego-golang/routers"
 	"github.com/astaxie/beego"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/astaxie/beego/orm"
-	"github.com/api-beego-golang/models"
+	"github.com/LittleRobotRoad/api-beego-golang/models"
 	"github.com/astaxie/beego/context"
 )
 

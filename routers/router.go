@@ -9,7 +9,7 @@
 package routers
 
 import (
-	"github.com/api-beego-golang/controllers"
+	"github.com/LittleRobotRoad/api-beego-golang/controllers"
 	"github.com/astaxie/beego"
 )
 

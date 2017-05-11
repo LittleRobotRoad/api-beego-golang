@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/api-beego-golang/models"
+	"github.com/LittleRobotRoad/api-beego-golang/models"
 	"encoding/json"
 	"github.com/astaxie/beego"
 )

@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"errors"
 	"strconv"
-	"github.com/api-beego-golang/models"
+	"github.com/LittleRobotRoad/api-beego-golang/models"
 )
 
 // Operations about WeChat

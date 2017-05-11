@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="GOPATH &lt;driver&gt;">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/.." />
-      <root url="file://$PROJECT_DIR$/../../niconico.lol" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../../../niconico.lol" />
     </CLASSES>
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/.." />
-      <root url="file://$PROJECT_DIR$/../../niconico.lol" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../../../niconico.lol" />
     </SOURCES>
     <excluded>
       <root url="file://$PROJECT_DIR$" />
