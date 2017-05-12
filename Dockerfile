@@ -8,6 +8,7 @@ RUN go get -u github.com/go-sql-driver/mysql
 
 EXPOSE 8080
 
+
 ADD / /go/src/github.com/LittleRobotRoad/api-beego-golang
 
 ADD run.sh /
