@@ -17,7 +17,7 @@ func init() {
 //bee pack -be GOOS=linux
 func initDB() {
 	// set default database
-	orm.RegisterDataBase("default", "mysql", "root:root@tcp(192.168.99.100:3306)/goweb?charset=utf8")
+	orm.RegisterDataBase("default", "mysql", "root:root@tcp(172.17.0.2:3306)/goweb?charset=utf8")
 	// register model
 	orm.RegisterModel(new(models.Object), new(models.DriverUser), new(models.BossUser), new(models.BossToDriver))
 
