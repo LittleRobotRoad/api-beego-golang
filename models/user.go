@@ -12,7 +12,7 @@ type DriverUser struct {
 	Phone    string
 	WechatId string
 	Password string
-	Address  string
+	Address  string    `orm:"size(100)"`
 	//经度
 	Latitude float64  `orm:"digits(9);decimals(6)"`
 	//纬度
@@ -29,7 +29,7 @@ type BossUser struct {
 	WechatId string
 	NickName string
 	Password string
-	Address  string
+	Address  string       `orm:"size(100)"`
 	//经度
 	Latitude float64  `orm:"digits(9);decimals(6)"`
 	//纬度
@@ -121,11 +121,11 @@ func Login(reqBody ReqLoginUser) (int, interface{}, error) {
 				return code, driver, err
 			} else {
 				code = 302
-				err = errors.New("password error")
+				err = errors.New("密码错误")
 			}
 		} else {
 			code = 303
-			err = errors.New("user not exist")
+			err = errors.New("用户不存在")
 		}
 
 	} else if reqBody.UserType == 1 {

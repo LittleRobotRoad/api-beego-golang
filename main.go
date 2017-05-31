@@ -17,7 +17,8 @@ func init() {
 //bee pack -be GOOS=linux
 func initDB() {
 	// set default database
-	orm.RegisterDataBase("default", "mysql", "root:root@/goweb?charset=utf8")
+	// 读取conf中的mysql的数据库link
+	orm.RegisterDataBase("default", "mysql", beego.AppConfig.String("mysqlLink"))
 	// register model
 	orm.RegisterModel(new(models.Object), new(models.DriverUser), new(models.BossUser), new(models.BossToDriver))
 

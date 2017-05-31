@@ -282,7 +282,7 @@ func (u *UserController) Add() {
 		code = 200
 	} else {
 		code = 201
-		err = errors.New("user is Exist")
+		err = errors.New("此手机号已经注册")
 	}
 
 	content := strconv.FormatInt(id, 10)
